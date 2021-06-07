@@ -3,14 +3,14 @@ let firstNumber = null;
 do {
     firstNumber = Number( prompt( enterNumberText ) );
     enterNumberText = 'Вы ввели недопустимый первый операнд! Повторите попытку: ' ;
-} while (!firstNumber) ;
+} while (typeof firstNumber === 'Number') ;
 
 enterNumberText = 'Введите второй операнд (число):' ;
 let secondNumber = null ;
 do {
     secondNumber = Number( prompt( enterNumberText ) );
     enterNumberText = 'Вы ввели недопустимый второй операнд! Повторите попытку: ' ;
-} while (!secondNumber) ;
+} while (typeof secondNumber === 'Number') ;
 
 enterNumberText = 'Введите знак операции:' ;
 let act = null ;
