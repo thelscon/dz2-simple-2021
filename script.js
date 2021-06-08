@@ -1,65 +1,40 @@
 let enterNumberText = 'Введите первый операнд (число):' ;
-let firstNumber = null;
+let firstNumber ;
 do {
-    firstNumber = Number( prompt( enterNumberText ) );
-    enterNumberText = 'Вы ввели недопустимый первый операнд! Повторите попытку: ' ;
-} while (typeof firstNumber === 'Number') ;
+    firstNumber = prompt( enterNumberText ).trim() ;
+    enterNumberText = 'Недопустимый первый операнд! Повторите попытку: ' ;
+} while (firstNumber === '' || Number.isNaN(parseFloat(firstNumber))) ;
+firstNumber = parseFloat(firstNumber) ;
 
 enterNumberText = 'Введите второй операнд (число):' ;
-let secondNumber = null ;
+let secondNumber ;
 do {
-    secondNumber = Number( prompt( enterNumberText ) );
-    enterNumberText = 'Вы ввели недопустимый второй операнд! Повторите попытку: ' ;
-} while (typeof secondNumber === 'Number') ;
+    secondNumber = prompt( enterNumberText ).trim() ;
+    enterNumberText = 'Недопустимый второй операнд! Повторите попытку: ' ;
+} while (secondNumber === '' || Number.isNaN(parseFloat(secondNumber))) ;
+secondNumber = parseFloat(secondNumber) ;
 
 enterNumberText = 'Введите знак операции:' ;
-let act = null ;
+let act ;
 do {
     act = prompt( enterNumberText );
     enterNumberText = 'Вы ввели недопустимый знак операции! Повторите попытку: ' ;
 } while ( act !== '+' && act !== '-' && act !== '*' && act !==  '/' ) ;
 
-let result;
+let result ;
 switch (act) {
-    case '+': result = firstNumber+secondNumber;
+    case '+': 
+        result = isFinite(firstNumber + secondNumber) ? `Результат операции: ${firstNumber}${act}${secondNumber}=${firstNumber+secondNumber}` : `Операция "${firstNumber}${act}${secondNumber}" невозможна!` ;
     break;
-    case '-': result = firstNumber-secondNumber;
+    case '-': 
+        result = isFinite(firstNumber - secondNumber) ? `Результат операции: ${firstNumber}${act}${secondNumber}=${firstNumber-secondNumber}` : `Операция "${firstNumber}${act}${secondNumber}" невозможна!` ;
     break;
-    case '*': result = firstNumber*secondNumber;
+    case '*': 
+        result = isFinite(firstNumber * secondNumber) ? `Результат операции: ${firstNumber}${act}${secondNumber}=${firstNumber*secondNumber}` : `Операция "${firstNumber}${act}${secondNumber}" невозможна!` ;
     break;
-    case '/': result = firstNumber/secondNumber;
-    break;
-}
-
-alert( `Результат операции: ${firstNumber}${act}${secondNumber}=${result}` );
-
-//------------------------------------------------------------------------------------------------
-
-/*let firstNumber = Number( prompt('Введите первый операнд(число): ') );
-while(!firstNumber) {
-    firstNumber = Number( prompt( 'Вы ввели недопустимый операнд(число), повторите попытку:' ) );
-}
-
-let secondNumber = Number( prompt('Введите второй операнд(число):') );
-while(!secondNumber) {
-    secondNumber = Number( prompt( 'Вы ввели недопустимый операнд(число), повторите попытку:' ) );
-}
-
-let act = prompt('Введите знак операции:');
-while (act !== '+' && act !== '-' && act !== '*' && act !==  '/') {
-    act = prompt('Вы ввели недопустимый знак операции, повторите попытку:');
-}
-
-let result;
-switch (act) {
-    case '+': result = firstNumber+secondNumber;
-    break;
-    case '-': result = firstNumber-secondNumber;
-    break;
-    case '*': result = firstNumber*secondNumber;
-    break;
-    case '/': result = firstNumber/secondNumber;
+    case '/': 
+        result = isFinite(firstNumber / secondNumber) ? `Результат операции: ${firstNumber}${act}${secondNumber}=${firstNumber/secondNumber}` : `Операция "${firstNumber}${act}${secondNumber}" невозможна!` ;
     break;
 }
 
-alert( `Результат операции: ${firstNumber}${act}${secondNumber}=${result}` ); */
+alert( result ) ;
